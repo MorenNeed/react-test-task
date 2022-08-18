@@ -1,0 +1,13 @@
+
+body
+{
+    margin: 2vh;
+    height: 96vh;
+    width: auto;
+}
+.hr
+{
+    margin-block-start: 1vh;
+    margin-block-end: 1vh;
+    border: 1px solid black;
+}

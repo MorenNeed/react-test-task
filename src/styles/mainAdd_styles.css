@@ -1,0 +1,44 @@
+
+
+.productAdd-main
+{
+    height: 78vh;
+}
+.form-group
+{
+    display: flex;
+    padding: 2vh;
+    width: 30%;
+}
+.form-group label
+{
+    width: 30%;
+}
+.form-group input
+{
+    border: 2px solid black;
+    width: 70%;
+}
+.form-select
+{
+    border: 2px solid black;
+    width: 70%;
+    background-color: transparent;
+}
+.dinamicalElement
+{
+    width: 40%;
+    border: 2px solid black;
+}
+#DVD
+{
+    height: 20vh;
+}
+#Furniture
+{
+    height: 40vh;
+}
+#Book
+{
+    height: 30vh;
+}
