@@ -3,7 +3,7 @@ import {
     HeaderAdd,
     Footer,
     MainAdd
-  } from "../components";
+  } from "../components/exports";
 
 function Add()
 {

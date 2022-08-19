@@ -3,7 +3,7 @@ import {
   HeaderList,
   Footer,
   MainList
-} from "../components";
+} from "../components/exports";
 
 function List()
 {
