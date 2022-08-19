@@ -25,20 +25,49 @@
     width: 70%;
     background-color: transparent;
 }
-.dinamicalElement
+.form-select option[disabled]
 {
-    width: 40%;
-    border: 2px solid black;
+    display: none;
 }
-#DVD
+.dynamicalElement
 {
-    height: 20vh;
+    width: 30%;
+    border: 2px solid black;
+    padding: 2vh;
+    margin: 2vh;
+    display: flex;
+    flex-direction: column;
+    height: 10vh;
 }
 #Furniture
 {
-    height: 40vh;
+    height: 25vh;
 }
-#Book
+#TypeSwitcher
 {
-    height: 30vh;
+    display: none;
+}
+.dynamical-form-group
+{
+    display: flex;
+    padding: 2vh;
+    width: calc(100% - 4vh);
+}
+.dynamical-form-group label
+{
+    width: 30%;
+}
+.dynamical-form-group input
+{
+    border: 2px solid black;
+    width: 70%;
+}
+.description
+{
+    padding-left: 2vh;
+}
+.description p
+{
+    color: gray;
+    font-style: italic;
 }

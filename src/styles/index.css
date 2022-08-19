@@ -1,4 +1,7 @@
-
+html
+{
+    font-family: system-ui;
+}
 body
 {
     margin: 2vh;

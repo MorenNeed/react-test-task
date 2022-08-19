@@ -1,6 +1,17 @@
 import React from "react";
 import '../styles/mainList_styles.css';
 
+function ElementInfo()
+{
+return(
+      <div className="element-info">
+        <p>JVG200123</p>
+        <p>Acme DISK</p>
+        <p>1.00$</p>
+        <p>Size: 700 MB</p>
+      </div>
+    );
+}
 function MainList()
 {
   return (
@@ -10,12 +21,7 @@ function MainList()
             <div className="productList-main">
                 <div className="product-element">
                     <input type="checkbox" className="delete-checkbox"/>
-                    <div className="element-info">
-                        <p>JVG200123</p>
-                        <p>Acme DISK</p>
-                        <p>1.00$</p>
-                        <p>Size: 700 MB</p>
-                    </div>
+                    <ElementInfo/>
                 </div>
             </div>
         </main>
