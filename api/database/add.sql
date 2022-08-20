@@ -1,0 +1,1 @@
+INSERT INTO products (SKU,NAME,PRICE,DESCRIPTION) VALUES (:sku,:name,:price,:description)

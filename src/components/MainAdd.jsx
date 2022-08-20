@@ -30,9 +30,7 @@ class ProductForm extends React.Component
     {
       formSelect: 'Type Switcher',
       sku: '',
-      sku_invalid: '',
       name: '',
-      name_invalid: '',
       price: '',
       size: '',
       height: '',
