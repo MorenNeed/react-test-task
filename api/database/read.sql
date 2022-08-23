@@ -1,1 +1,1 @@
-SELECT * FROM 'products' ORDER BY 'SQU' DESC;
+SELECT * FROM products ORDER BY 'squ' DESC;

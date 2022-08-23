@@ -1,10 +1,10 @@
 <?php
 class Database
 {
-    private $host = "localhost";
-    private $db_name = "scandiweb_db";
+    private $host = "127.0.0.1";
+    private $db_name = "test_db";
     private $username = "root";
-    private $password = "";
+    private $password = "root";
     public $conn;
 
     public function getConnection()

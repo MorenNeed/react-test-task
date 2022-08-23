@@ -24,10 +24,10 @@ class Book extends Product
         $stmt->bindParam(':description', $this->weight);
 
 
-        if ($stmt->execute()) {
+        if ($stmt->execute())
+        {
             return true;
         }
-    
         return false;
     }
 }

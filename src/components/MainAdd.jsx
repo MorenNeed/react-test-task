@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../styles/mainAdd_styles.css';
 import Components from './Components';
 
@@ -36,7 +36,10 @@ class ProductForm extends React.Component
       height: '',
       width: '',
       length: '',
-      weight: ''
+      weight: '',
+      error: null,
+      isLoaded: false,
+      items: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -58,18 +61,18 @@ class ProductForm extends React.Component
   handleSubmit(event)
   {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    formData.forEach(el =>
-      {
-        if(el === '')
-        {
-          alert("Please, submit required data");
-        }
-        else
-        {
-          console.log(el);
-        }
-      });
+    // const formData = new FormData(event.target);
+    // formData.forEach(el =>
+    //   {
+    //     if(el === '')
+    //     {
+    //       alert("Please, submit required data");
+    //     }
+    //     else
+    //     {
+    //       console.log(el);
+    //     }
+    //   });
   }
   render()
   {
