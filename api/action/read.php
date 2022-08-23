@@ -3,15 +3,17 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 include_once "../config/database.php";
-include_once "../objects/product.php";
+include "../objects/elements/book.php";
+include "../objects/elements/dvd.php";
+include "../objects/elements/furniture.php";
 
 $database = new Database();
 $db = $database->getConnection();
 
-$product = new Product($db);
+$book = new Book($db);
 
-// $stmt = $product->read();
-// $num = $stmt->rowCount();
+$stmt = $book->read();
+$num = $stmt->rowCount();
 
 if($num>0)
 {
@@ -23,9 +25,10 @@ if($num>0)
         extract($row);
 
         $product_item = array(
-            "SKU" => $SKU,
+            "sku" => $sku,
             "name" => $name,
-            "price" => $price
+            "price" => $price,
+            "description" => $description
         );
 
         array_push($products_arr["records"], $product_item);
@@ -35,5 +38,11 @@ if($num>0)
     http_response_code(200);
 
     echo json_encode($products_arr);
+}
+else
+{
+    http_response_code(404);
+
+    echo json_encode(array("message" => "No products!"), JSON_UNESCAPED_UNICODE);
 }
 ?>
