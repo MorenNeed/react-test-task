@@ -8,7 +8,7 @@
 {
     display: flex;
     padding: 2vh;
-    width: 30%;
+    width: 35vh;
 }
 .form-group label
 {
@@ -31,17 +31,13 @@
 }
 .dynamicalElement
 {
-    width: 30%;
+    width: fit-content;
     border: 2px solid black;
     padding: 2vh;
     margin: 2vh;
     display: flex;
     flex-direction: column;
-    height: 10vh;
-}
-#Furniture
-{
-    height: 25vh;
+    height: fit-content;
 }
 #TypeSwitcher
 {

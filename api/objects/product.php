@@ -1,36 +1,32 @@
 <?php
+include_once "/Users/Alex/source/repos/react-test-task/api/config/database.php";
+
 abstract class Product
 {
     protected $conn;
 
-    protected $sku;
-    protected $name;
-    protected $price;
+    public $sku;
+    public $name;
+    public $price;
 
     abstract protected function add();
     public function read()
     {
-        $commandFile = fopen("/api/database/read.sql", "r") or die("Unable to open file!");
-        $query = fread($commandFile, filesize("/api/database/read.sql"));
-        fclose($commandFile);
+        $query = file_get_contents('/Users/Alex/source/repos/react-test-task/api/database/read.sql');
 
-        $stmt = $this->conn->prepare($query);
-
-        $stmt->execute();
+        $stmt = mysqli_query($this->conn, $query);
 
         return $stmt;
     }
     public function delete()
     {
-        $commandFile = fopen("/api/database/delete.sql", "r") or die("Unable to open file!");
-        $query = fread($commandFile, filesize("/api/database/delete.sql"));
-        fclose($commandFile);
+        $query = file_get_contents('/Users/Alex/source/repos/react-test-task/api/database/delete.sql');
 
         $stmt = $this->conn->prepare($query);
 
         $this->sku = htmlspecialchars(strip_tags($this->sku));
 
-        $stmt->bindParam(':sku',$this->sku);
+        $stmt->bind_param('s', $this->sku);
 
         if ($stmt->execute())
         {

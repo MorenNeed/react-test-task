@@ -2,10 +2,9 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-include_once "../config/database.php";
-include "../objects/elements/book.php";
-include "../objects/elements/dvd.php";
-include "../objects/elements/furniture.php";
+include_once "/Users/Alex/source/repos/react-test-task/api/objects/elements/book.php";
+include_once "/Users/Alex/source/repos/react-test-task/api/objects/elements/dvd.php";
+include_once "/Users/Alex/source/repos/react-test-task/api/objects/elements/furniture.php";
 
 $database = new Database();
 $db = $database->getConnection();
@@ -13,14 +12,14 @@ $db = $database->getConnection();
 $book = new Book($db);
 
 $stmt = $book->read();
-$num = $stmt->rowCount();
+$num = mysqli_num_rows($stmt);
 
 if($num>0)
 {
     $products_arr = array();
     $products_arr["records"] = array();
 
-    while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+    while($row = mysqli_fetch_assoc($stmt))
     {
         extract($row);
 

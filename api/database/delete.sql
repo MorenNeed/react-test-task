@@ -1,1 +1,1 @@
-DELETE FROM products WHERE sku=:sku
+DELETE FROM products WHERE sku=(?)

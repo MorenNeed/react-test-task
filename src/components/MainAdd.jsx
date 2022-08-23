@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import '../styles/mainAdd_styles.css';
 import Components from './Components';
 
@@ -37,9 +37,6 @@ class ProductForm extends React.Component
       width: '',
       length: '',
       weight: '',
-      error: null,
-      isLoaded: false,
-      items: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -61,35 +58,43 @@ class ProductForm extends React.Component
   handleSubmit(event)
   {
     event.preventDefault();
-    // const formData = new FormData(event.target);
-    // formData.forEach(el =>
-    //   {
-    //     if(el === '')
-    //     {
-    //       alert("Please, submit required data");
-    //     }
-    //     else
-    //     {
-    //       console.log(el);
-    //     }
-    //   });
+    const formData = new FormData(event.target);
+    try
+    {
+      fetch("http://localhost:8000/api/action/add.php", {
+        method: "POST",
+        body: JSON.stringify({
+          sku: formData.get("sku"),
+          name: formData.get("name"),
+          price: formData.get("price"),
+          description : formData.get("size"),
+          type: formData.get("formSelect")
+        }),
+      })
+      .then(res => res.json())
+      .then((result) => {
+        console.log(result.message);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    window.location = '/';
   }
   render()
   {
     return (
-      <form id="product_form" onSubmit={this.handleSubmit}>
+      <form id="product_form" name="product_form" onSubmit={this.handleSubmit}>
         <div className="form-group">
           <label htmlFor="sku">SKU</label>
           <input type="text" id="sku" name="sku" value={this.state.sku} onChange={this.handleChange}/>
         </div>
-        <p>{this.state.sku_invalid}</p>
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input type="text" id="name" name="name" value={this.state.name} onChange={this.handleChange}/>
         </div>
         <div className="form-group">
           <label htmlFor="price">Price ($)</label>
-          <input type="text" id="price" name="price" value={this.state.price} onChange={this.handleChange}/>
+          <input type="number" id="price" name="price" value={this.state.price} onChange={this.handleChange}/>
         </div>
         <div className="form-group">
           <label htmlFor="productType">Type Switcher</label>
@@ -139,7 +144,7 @@ class DVD extends DynamicalElement
       <>
         <div className="dynamical-form-group">
           <label htmlFor="size">Size (MB)</label>
-          <input type="text" id="size" name="size" value={this.state.size} onChange={this.handleChange}/>
+          <input form="product_form" type="text" id="size" name="size" value={this.state.size} onChange={this.handleChange}/>
         </div>
         <div className="description">
           <p>* Please, provide size</p>

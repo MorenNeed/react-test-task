@@ -1,5 +1,5 @@
 <?php
-include './api/objects/product.php';
+include_once '/Users/Alex/source/repos/react-test-task/api/objects/product.php';
 
 class Book extends Product
 {
@@ -7,9 +7,7 @@ class Book extends Product
 
     public function add()
     {
-        $commandFile = fopen("/api/database/read.sql", "r") or die("Unable to open file!");
-        $query = fread($commandFile, filesize("/api/database/read.sql"));
-        fclose($commandFile);
+        $query = file_get_contents('/Users/Alex/source/repos/react-test-task/api/database/add.sql');
 
         $stmt = $this->conn->prepare($query);
 
@@ -18,10 +16,7 @@ class Book extends Product
         $this->price=htmlspecialchars(strip_tags($this->price));
         $this->weight=htmlspecialchars(strip_tags($this->weight));
 
-        $stmt->bindParam(':sku',$this->sku);
-        $stmt->bindParam(':name', $this->name);
-        $stmt->bindParam(':price', $this->price);
-        $stmt->bindParam(':description', $this->weight);
+        $stmt->bind_param('ssds', $this->sku, $this->name, $this->price, $this->weight);
 
 
         if ($stmt->execute())

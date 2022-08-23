@@ -1,7 +1,7 @@
 <?php
 class Database
 {
-    private $host = "127.0.0.1";
+    private $host = "localhost";
     private $db_name = "test_db";
     private $username = "root";
     private $password = "root";
@@ -11,14 +11,11 @@ class Database
     {
         $this->conn = null;
 
-        try
+        $this->conn = mysqli_connect($this->host, $this->username, $this->password, $this->db_name, 3306);
+
+        if(!$this->conn)
         {
-            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
-            $this->conn->exec("set names utf8");
-        }
-        catch(PDOException $ex)
-        {
-            echo "Connection error: " . $ex->getMessage();
+            die("could not connect to server!");
         }
         return $this->conn;
     }

@@ -6,21 +6,24 @@
 .productList-main
 {
     height: 78vh;
+    display: flex;
 }
 .product-element
 {
     border: 2px solid black;
     width: 20%;
     height: 30%;
+    margin: 2vh;
 }
 .element-info
 {
-    margin-top: 2vh;
+    margin-top: 1vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .element-info p
 {
-    margin: 0.25rem;
+    margin: 0;
+    padding: 1vh;
 }
