@@ -37,6 +37,7 @@ class ProductForm extends React.Component
       width: '',
       length: '',
       weight: '',
+      data: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -53,32 +54,76 @@ class ProductForm extends React.Component
   }
   validateData(data)
   {
-    console.log(data.type);
+    console.log(data);
+    if(data['message'] === "Product created!")
+    {
+      window.location = '/';
+    }
+    else
+    {
+      this.setState(
+        {
+          data: Array.from(data)
+        });
+    }
   }
   handleSubmit(event)
   {
     event.preventDefault();
     const formData = new FormData(event.target);
-    try
+    if(formData.get('formSelect') === 'DVD')
     {
-      fetch("http://localhost:8000/api/action/add.php", {
-        method: "POST",
-        body: JSON.stringify({
-          sku: formData.get("sku"),
-          name: formData.get("name"),
-          price: formData.get("price"),
-          description : formData.get("size"),
-          type: formData.get("formSelect")
-        }),
-      })
-      .then(res => res.json())
-      .then((result) => {
-        console.log(result.message);
-      });
-    } catch (err) {
-      console.log(err);
+      if(formData.get('size') !== '')
+      {
+        formData.append('description', formData.get('size') + ' (MB)');
+      }
+      else
+      {
+        formData.append('description', '');
+      }
     }
-    window.location = '/';
+    else if(formData.get('formSelect') === 'Furniture')
+    {
+      if(formData.get('height') !== ''  && formData.get('width') !== '' && formData.get('length') !== '')
+      {
+      formData.append('description', formData.get('height') + 'x' + formData.get('width') + 'x' + formData.get('length') + ' (CM)');
+      }
+      else
+      {
+        formData.append('description', '');
+      }
+    }
+    else if(formData.get('formSelect') === 'Book')
+    {
+      if(formData.get('weight') !== '')
+      {
+        formData.append('description', formData.get('weight') + ' (KG)');
+      }
+      else
+      {
+        formData.append('description', '');
+      }
+    }
+    fetch("http://localhost:8000/api/action/add.php",
+    {
+      method: "POST",
+      body: JSON.stringify(
+        {
+          sku: formData.get('sku'),
+          name: formData.get('name'),
+          price: formData.get('price'),
+          type: formData.get('formSelect'),
+          description: formData.get('description')
+        })
+    })
+      .then((response) =>
+      {
+        return response.json();
+      })
+      .then((data) =>
+      {
+        this.validateData(data);
+      });
   }
   render()
   {
@@ -87,14 +132,17 @@ class ProductForm extends React.Component
         <div className="form-group">
           <label htmlFor="sku">SKU</label>
           <input type="text" id="sku" name="sku" value={this.state.sku} onChange={this.handleChange}/>
+          <label className="validMessage" htmlFor="sku">{this.state.data[0]}</label>
         </div>
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input type="text" id="name" name="name" value={this.state.name} onChange={this.handleChange}/>
+          <label className="validMessage" htmlFor="name">{this.state.data[1]}</label>
         </div>
         <div className="form-group">
           <label htmlFor="price">Price ($)</label>
           <input type="number" id="price" name="price" value={this.state.price} onChange={this.handleChange}/>
+          <label className="validMessage" htmlFor="price">{this.state.data[2]}</label>
         </div>
         <div className="form-group">
           <label htmlFor="productType">Type Switcher</label>
@@ -104,8 +152,9 @@ class ProductForm extends React.Component
             <option>Furniture</option>
             <option>Book</option>
           </select>
+          <label className="validMessage" htmlFor="formSelect">{this.state.data[3]}</label>
         </div>
-        <DynamicalElement id={this.state.formSelect}/>
+        <DynamicalElement id={this.state.formSelect} data={this.state.data[4]}/>
       </form>
     );
   }
@@ -124,7 +173,7 @@ class DynamicalElement extends ProductForm
     const Component = components[(this.props.id).replace(/ /g, '')];
     return(
       <div className="dynamicalElement" id={(this.props.id).replace(/ /g, '')}>
-        <Component/>
+        <Component data={this.props.data}/>
       </div>
     );
   }
@@ -144,10 +193,11 @@ class DVD extends DynamicalElement
       <>
         <div className="dynamical-form-group">
           <label htmlFor="size">Size (MB)</label>
-          <input form="product_form" type="text" id="size" name="size" value={this.state.size} onChange={this.handleChange}/>
+          <input form="product_form" type="number" id="size" name="size" value={this.state.size} onChange={this.handleChange}/>
         </div>
         <div className="description">
           <p>* Please, provide size</p>
+          <p>{this.props.data}</p>
         </div>
       </>
     );
@@ -161,18 +211,19 @@ class Furniture extends DynamicalElement
       <>
         <div className="dynamical-form-group">
           <label htmlFor="height">Height (CM)</label>
-          <input type="text" id="height" name="height" value={this.state.height} onChange={this.handleChange}/>
+          <input type="number" id="height" name="height" value={this.state.height} onChange={this.handleChange}/>
         </div>
         <div className="dynamical-form-group">
           <label htmlFor="width">Width (CM)</label>
-          <input type="text" id="width" name="width" value={this.state.width} onChange={this.handleChange}/>
+          <input type="number" id="width" name="width" value={this.state.width} onChange={this.handleChange}/>
         </div>
         <div className="dynamical-form-group">
           <label htmlFor="length">Length (CM)</label>
-          <input type="text" id="length" name="length" value={this.state.length} onChange={this.handleChange}/>
+          <input type="number" id="length" name="length" value={this.state.length} onChange={this.handleChange}/>
         </div>
         <div className="description">
           <p>* Please, provide dimensions in HxWxL format</p>
+          <p>{this.props.data}</p>
         </div>
       </>
     );
@@ -186,10 +237,11 @@ class Book extends DynamicalElement
       <>
         <div className="dynamical-form-group">
           <label htmlFor="weight">Weight (KG)</label>
-          <input type="text" id="weight" name="weight" value={this.state.weight} onChange={this.handleChange}/>
+          <input type="number" id="weight" name="weight" value={this.state.weight} onChange={this.handleChange}/>
         </div>
         <div className="description">
           <p>* Please, provide weight</p>
+          <p>{this.props.data}</p>
         </div>
       </>
     );

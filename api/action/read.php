@@ -1,15 +1,9 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
+require '/Users/Alex/source/repos/react-test-task/api/autoload.php';
 
-include_once "/Users/Alex/source/repos/react-test-task/api/objects/elements/book.php";
-include_once "/Users/Alex/source/repos/react-test-task/api/objects/elements/dvd.php";
-include_once "/Users/Alex/source/repos/react-test-task/api/objects/elements/furniture.php";
-
-$database = new Database();
-$db = $database->getConnection();
-
-$book = new Book($db);
+$book = new Book();
 
 $stmt = $book->read();
 $num = mysqli_num_rows($stmt);
