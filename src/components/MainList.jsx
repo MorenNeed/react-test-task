@@ -9,7 +9,7 @@ class MainListComponent extends React.Component
     this.state =
     {
       data: [],
-      selectedCheckboxes: [],
+      selectedCheckboxes: [''],
       data_delete: []
     };
     this.handleChange = this.handleChange.bind(this);
@@ -84,11 +84,9 @@ class MainListComponent extends React.Component
   {
     return(
       <>
-        <div>
-          <p>{this.state.data_delete}</p>
-        </div>
         <hr className="hr"/>
           <main>
+            <p>{this.state.data_delete}</p>
             <MainListElements/>
           </main>
         <hr className="hr"/>

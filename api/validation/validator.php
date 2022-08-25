@@ -6,7 +6,7 @@ class Validator extends DBCommands
     {
         if(strlen($sku) <= 0)
         {
-            array_push($this->message, "SKU has no data!");
+            array_push($this->message, "Select data to delete!");
             return $this->message;
         }
         array_push($this->message, "");

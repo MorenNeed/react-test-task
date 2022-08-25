@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-require('./api/autoload.php');
+require(dirname(__DIR__). DIRECTORY_SEPARATOR  .'autoload.php');
 
 
 $book = new Book();
