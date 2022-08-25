@@ -8,20 +8,33 @@ require '/Users/Alex/source/repos/react-test-task/api/autoload.php';
 
 $data = json_decode(file_get_contents("php://input"));
 
-$element = new Book();
 
-$element->setDeleteData($data->sku);
+$validator = new Validator();
 
-if($element->remove())
+if
+(
+    $validator->validate_sku_delete($data->sku) === array('')
+)
 {
-    http_response_code(200);
+    $element = new Book();
 
-    echo json_encode(array("message" => "Product deleted!"), JSON_UNESCAPED_UNICODE);
+    $element->setDeleteData($data->sku);
+
+    if($element->remove())
+    {
+        http_response_code(200);
+
+        echo json_encode(array("message" => "Product deleted!"), JSON_UNESCAPED_UNICODE);
+    }
+    else
+    {
+        http_response_code(503);
+
+        echo json_encode(array("message" => "Can`t delete file!"));
+    }
 }
 else
 {
-    http_response_code(503);
-
-    echo json_encode(array("message" => "Can`t delete file!"));
+    echo json_encode($validator->getMessage(), JSON_UNESCAPED_UNICODE);
 }
 ?>

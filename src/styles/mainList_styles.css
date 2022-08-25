@@ -1,7 +1,7 @@
 
 .main-hr
 {
-    border-color: black;
+    border-color: rgba(0, 0, 0, 0.8);
 }
 .productList-main
 {
@@ -10,10 +10,15 @@
 }
 .product-element
 {
-    border: 2px solid black;
-    width: 20%;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    width: 25%;
     height: 30%;
     margin: 2vh;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.product-element:hover
+{
+    background-color: rgba(0, 0, 0, 0.2);
 }
 .element-info
 {
@@ -26,4 +31,7 @@
 {
     margin: 0;
     padding: 1vh;
+}
+.delete-checkbox
+{
 }

@@ -2,9 +2,19 @@
 class Validator extends DBCommands
 {
     private $message = array();
+    public function validate_sku_delete($sku)
+    {
+        if(strlen($sku) <= 0)
+        {
+            array_push($this->message, "SKU has no data!");
+            return $this->message;
+        }
+        array_push($this->message, "");
+        return $this->message;
+    }
     public function validate_sku($sku)
     {
-        if($this->compare($sku) === true)
+        if($this->compare($sku))
         {
             array_push($this->message, "That SKU already exists!");
             return $this->message;

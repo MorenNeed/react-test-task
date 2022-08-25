@@ -1,5 +1,8 @@
 
-
+input
+{
+    background-color: transparent;
+}
 .productAdd-main
 {
     height: 78vh;
@@ -16,12 +19,12 @@
 }
 .form-group input
 {
-    border: 2px solid black;
+    border: 2px solid rgba(0, 0, 0, 0.8);
     width: 55%;
 }
 .form-select
 {
-    border: 2px solid black;
+    border: 2px solid rgba(0, 0, 0, 0.8);
     width: 55%;
     background-color: transparent;
 }
@@ -29,10 +32,14 @@
 {
     display: none;
 }
+.form-select option
+{
+    background-color: rgba(0, 0, 0, 0.1);
+}
 .dynamicalElement
 {
-    width: fit-content;
-    border: 2px solid black;
+    width: calc(100% - 8vh);
+    border: 2px solid rgba(0, 0, 0, 0.8);
     padding: 2vh;
     margin: 2vh;
     display: flex;
@@ -55,26 +62,27 @@
 }
 .dynamical-form-group input
 {
-    border: 2px solid black;
+    border: 2px solid rgba(0, 0, 0, 0.8);
     width: 70%;
 }
 .description
 {
     padding-left: 2vh;
 }
-.validMessage
-{
-    width: 30%;
-    color: red;
-    font-style: italic;
-    padding-left: 2vh;
-}
 .description p
 {
     color: gray;
     font-style: italic;
+    margin: 0;
 }
-.description p:nth-child(2)
+.validMessage
+{
+    width: 100%;
+    padding-left: 2vh;
+}
+.validMessage p
 {
     color: red;
+    font-style: italic;
+    margin: 0;
 }

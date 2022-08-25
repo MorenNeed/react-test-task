@@ -132,17 +132,23 @@ class ProductForm extends React.Component
         <div className="form-group">
           <label htmlFor="sku">SKU</label>
           <input type="text" id="sku" name="sku" value={this.state.sku} onChange={this.handleChange}/>
-          <label className="validMessage" htmlFor="sku">{this.state.data[0]}</label>
+        </div>
+        <div className="validMessage">
+          <p>{this.state.data[0]}</p>
         </div>
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input type="text" id="name" name="name" value={this.state.name} onChange={this.handleChange}/>
-          <label className="validMessage" htmlFor="name">{this.state.data[1]}</label>
+        </div>
+        <div className="validMessage">
+          <p>{this.state.data[1]}</p>
         </div>
         <div className="form-group">
           <label htmlFor="price">Price ($)</label>
           <input type="number" id="price" name="price" value={this.state.price} onChange={this.handleChange}/>
-          <label className="validMessage" htmlFor="price">{this.state.data[2]}</label>
+        </div>
+        <div className="validMessage">
+          <p>{this.state.data[2]}</p>
         </div>
         <div className="form-group">
           <label htmlFor="productType">Type Switcher</label>
@@ -152,7 +158,9 @@ class ProductForm extends React.Component
             <option>Furniture</option>
             <option>Book</option>
           </select>
-          <label className="validMessage" htmlFor="formSelect">{this.state.data[3]}</label>
+        </div>
+        <div className="validMessage">
+          <p>{this.state.data[3]}</p>
         </div>
         <DynamicalElement id={this.state.formSelect} data={this.state.data[4]}/>
       </form>
@@ -197,7 +205,9 @@ class DVD extends DynamicalElement
         </div>
         <div className="description">
           <p>* Please, provide size</p>
-          <p>{this.props.data}</p>
+          <div className="validMessage">
+            <p>{this.props.data}</p>
+          </div>
         </div>
       </>
     );
@@ -223,7 +233,9 @@ class Furniture extends DynamicalElement
         </div>
         <div className="description">
           <p>* Please, provide dimensions in HxWxL format</p>
-          <p>{this.props.data}</p>
+          <div className="validMessage">
+            <p>{this.props.data}</p>
+          </div>
         </div>
       </>
     );
@@ -241,7 +253,9 @@ class Book extends DynamicalElement
         </div>
         <div className="description">
           <p>* Please, provide weight</p>
-          <p>{this.props.data}</p>
+          <div className="validMessage">
+            <p>{this.props.data}</p>
+          </div>
         </div>
       </>
     );

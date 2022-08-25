@@ -9,39 +9,48 @@ class MainListComponent extends React.Component
     this.state =
     {
       data: [],
-      selectedCheckboxes: []
+      selectedCheckboxes: [],
+      data_delete: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit()
+  validateData(data)
   {
-    console.log(this.state.selectedCheckboxes.length);
-    if(this.state.selectedCheckboxes != null)
+    console.log(data);
+    if(data['message'] === "Product deleted!")
     {
-      this.state.selectedCheckboxes.forEach(element => {
-        try
-        {
-          fetch("http://localhost:8000/api/action/delete.php",
-          {
-            method: "POST",
-            body: JSON.stringify({
-              sku: element
-            }),
-          })
-          .then(res => res.json())
-          .then((result) => {
-            console.log(result.message);
-          });
-        } catch (err) {
-          console.log(err);
-        }
-      });
+      // window.location = '/';
     }
     else
     {
-      console.log("Select values to delete!");
+      this.setState(
+        {
+          data_delete: Array.from(data)
+        });
     }
+  }
+  handleSubmit()
+  {
+    this.state.selectedCheckboxes.forEach(element =>
+      {
+        fetch("http://localhost:8000/api/action/delete.php",
+        {
+        method: "POST",
+        body: JSON.stringify(
+          {
+            sku: element
+          })
+        })
+        .then((response) =>
+        {
+          return response.json();
+        })
+        .then((data) =>
+        {
+          this.validateData(data);
+        });
+      });
   }
   handleChange(id)
   {
@@ -75,6 +84,9 @@ class MainListComponent extends React.Component
   {
     return(
       <>
+        <div>
+          <p>{this.state.data_delete}</p>
+        </div>
         <hr className="hr"/>
           <main>
             <MainListElements/>
@@ -90,7 +102,7 @@ class MainListElements extends MainListComponent
   {
     const data = this.state.data;
     return(
-      <form id="delete_form" name="delete_form" onSubmit={() => this.handleSubmit()}>
+      <form id="delete_form" name="delete_form" onSubmit={this.handleSubmit}>
         <div className="productList-main">
           {data.map(el =>
             <div className="product-element" key={el.sku}>
