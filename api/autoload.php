@@ -2,11 +2,11 @@
 
 function autoload($className)
 {
-    $paths = array('api', 'api/action', 'api/config', 'api/validation', 'api/database', 'api/objects', 'api/objects/elements');
+    $paths = array('','action/', 'config/', 'validation/', 'database/', 'objects/', 'objects/elements/');
 
     foreach($paths as $path)
     {
-        $include = '/Users/Alex/source/repos/react-test-task/' . $path . '/' . $className . '.php';
+        $include = './api/' . $path . strtolower($className) . '.php';
         if(is_readable($include))
         {
             include_once $include;

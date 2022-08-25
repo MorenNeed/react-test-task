@@ -10,7 +10,7 @@ class DBCommands
     }
     protected function compare($sku)
     {
-        $this->query = file_get_contents('/Users/Alex/source/repos/react-test-task/api/database/compare.sql');
+        $this->query = file_get_contents(__DIR__ . '/../database/compare.sql');
 
         $this->stmt = $this->conn->prepare($this->query);
 
@@ -30,7 +30,7 @@ class DBCommands
     }
     protected function set($sku, $name, $price, $description)
     {
-        $this->query = file_get_contents('/Users/Alex/source/repos/react-test-task/api/database/insert.sql');
+        $this->query = file_get_contents(__DIR__ . '/../database/insert.sql');
 
         $this->stmt = $this->conn->prepare($this->query);
 
@@ -49,7 +49,7 @@ class DBCommands
     }
     protected function get()
     {
-        $this->query = file_get_contents('/Users/Alex/source/repos/react-test-task/api/database/select.sql');
+        $this->query = file_get_contents(__DIR__ . '/../database/select.sql');
 
         $this->stmt = mysqli_query($this->conn, $this->query);
 
@@ -57,7 +57,7 @@ class DBCommands
     }
     protected function delete($delete_data)
     {
-        $this->query = file_get_contents('/Users/Alex/source/repos/react-test-task/api/database/delete.sql');
+        $this->query = file_get_contents(__DIR__ . '/../database/delete.sql');
         $delete_data = htmlspecialchars(strip_tags($delete_data));
 
         $this->stmt = $this->conn->prepare($this->query);

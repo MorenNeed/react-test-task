@@ -1,7 +1,8 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-require '/Users/Alex/source/repos/react-test-task/api/autoload.php';
+require('./api/autoload.php');
+
 
 $book = new Book();
 
