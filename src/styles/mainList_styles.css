@@ -32,6 +32,49 @@
     margin: 0;
     padding: 1vh;
 }
-.delete-checkbox
+.validateDelete
 {
+    position: absolute;
+    right: 3vh;
+    top: 2vh;
+
+}
+.inactive
+{
+    display: none;
+}
+.active
+{
+    animation: activeAnimate .3s ease-in-out;
+    padding: 1vh;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    border-radius: 2vh;
+    -webkit-border-radius: 2vh;
+    -moz-border-radius: 2vh;
+    -ms-border-radius: 2vh;
+    -o-border-radius: 2vh;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -webkit-animation: activeAnimate .3s ease-in-out;
+}
+.validateDelete p
+{
+    margin: 0;
+    font-style: italic;
+    color: red;
+}
+
+/* start keyframes */
+@keyframes activeAnimate
+{
+    from
+    {
+        opacity: 0;
+    }
+    to
+    {
+        opacity: 1;
+    }
 }

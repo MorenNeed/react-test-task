@@ -1,8 +1,7 @@
 import React from "react";
 import '../styles/footer_styles.css';
-import Components from './Components';
 
-class FooterComponent extends Components
+export default class FooterComponent extends React.Component
 {
   constructor()
   {
@@ -16,12 +15,8 @@ class FooterComponent extends Components
       </footer>
     );
   }
+  render()
+  {
+    return this.data;
+  }
 }
-
-function Footer()
-{
-  const Footer = new FooterComponent();
-  return <>{Footer.reveal()}</>;
-}
-
-export default Footer;

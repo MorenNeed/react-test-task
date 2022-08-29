@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/mainList_styles.css';
 
-class MainListComponent extends React.Component
+export default class MainListComponent extends React.Component
 {
   constructor(props)
   {
@@ -9,8 +9,9 @@ class MainListComponent extends React.Component
     this.state =
     {
       data: [],
-      selectedCheckboxes: [''],
-      data_delete: []
+      selectedCheckboxes: [],
+      data_delete: [],
+      validateDelete: 'inactive'
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,38 +21,36 @@ class MainListComponent extends React.Component
     console.log(data);
     if(data['message'] === "Product deleted!")
     {
-      // window.location = '/';
+      window.location = '/';
     }
     else
     {
       this.setState(
         {
-          data_delete: Array.from(data)
+          data_delete: Array.from(data),
+          validateDelete: 'active'
         });
     }
   }
-  handleSubmit()
+  handleSubmit(event)
   {
-    this.state.selectedCheckboxes.forEach(element =>
-      {
-        fetch("http://localhost:8000/api/action/delete.php",
+    event.preventDefault();
+    fetch("http://localhost:8000/api/action/delete.php",
+    {
+      method: "POST",
+      body: JSON.stringify(
         {
-        method: "POST",
-        body: JSON.stringify(
-          {
-            sku: element
-          })
+          sku: Array.from(this.state.selectedCheckboxes)
         })
+      })
         .then((response) =>
         {
           return response.json();
         })
         .then((data) =>
         {
-          console.log(data);
           this.validateData(data);
         });
-      });
   }
   handleChange(id)
   {
@@ -100,23 +99,30 @@ class MainListElements extends MainListComponent
   {
     const data = this.state.data;
     return(
-      <form id="delete_form" name="delete_form" onSubmit={this.handleSubmit}>
-        <div className="productList-main">
-          {data.map(el =>
-            <div className="product-element" key={el.sku}>
-              <input
-                type="checkbox"
-                className="delete-checkbox"
-                form="delete_form"
-                id={el.sku}
-                onChange={() => this.handleChange(el.sku)}
-                selected={this.state.selectedCheckboxes.includes(el.sku)}
-              />
-              <ElementInfo sku={el.sku} name={el.name} price={el.price} description={el.description} selected={this.state.selectedCheckboxes}/>
-            </div>
-            )}
+      <>
+        <div className="validateDelete">
+          <div className={this.state.validateDelete}>
+            <p>{this.state.data_delete}</p>
+          </div>
         </div>
-      </form>
+        <form id="delete_form" name="delete_form" onSubmit={this.handleSubmit}>
+          <div className="productList-main">
+            {data.map(el =>
+              <div className="product-element" key={el.sku}>
+                <input
+                  type="checkbox"
+                  className="delete-checkbox"
+                  form="delete_form"
+                  id={el.sku}
+                  onChange={() => this.handleChange(el.sku)}
+                  selected={this.state.selectedCheckboxes.includes(el.sku)}
+                />
+                <ElementInfo sku={el.sku} name={el.name} price={el.price} description={el.description} selected={this.state.selectedCheckboxes}/>
+              </div>
+              )}
+          </div>
+        </form>
+      </>
     );
   }
 }
@@ -134,11 +140,3 @@ class ElementInfo extends MainListComponent
     );
   };
 }
-
-function MainList()
-{
-  const MainList = new MainListComponent();
-  return <>{MainList.render()}</>;
-}
-
-export default MainList;

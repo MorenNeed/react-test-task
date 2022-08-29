@@ -58,17 +58,19 @@ class DbCommands
     protected function delete($delete_data)
     {
         $this->query = file_get_contents(__DIR__ . '/../database/delete.sql');
-        $delete_data = htmlspecialchars(strip_tags($delete_data));
-
-        $this->stmt = $this->conn->prepare($this->query);
-
-        $this->stmt->bind_param('s', $delete_data);
-
-        if ($this->stmt->execute())
+        foreach(((array)$delete_data) as $deleteData)
         {
-            return true;
+            $deleteData = htmlspecialchars(strip_tags($deleteData));
+
+            $this->stmt = $this->conn->prepare($this->query);
+
+            $this->stmt->bind_param('s', $deleteData);
+            if(!$this->stmt->execute())
+            {
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 }
 ?>

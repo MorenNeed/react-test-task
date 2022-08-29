@@ -4,9 +4,9 @@ class Validator extends DbCommands
     private $message = array();
     public function validateSkuDelete($sku)
     {
-        if(strlen($sku) <= 0)
+        if(count((array)$sku) === 0)
         {
-            array_push($this->message, "Select data to delete!");
+            array_push($this->message, "Choose data to delete!");
             return $this->message;
         }
         array_push($this->message, "");

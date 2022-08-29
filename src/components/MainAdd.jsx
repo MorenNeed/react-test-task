@@ -1,14 +1,11 @@
 import React from "react";
 import '../styles/mainAdd_styles.css';
-import Components from './Components';
 
-class MainComponent extends Components
+export default class MainAddComponent extends React.Component
 {
-  constructor()
+  render()
   {
-    super();
-    this.data =
-    (
+    return(
       <>
         <hr className="hr" />
         <main>
@@ -236,10 +233,3 @@ class Book extends DynamicalElement
     );
   }
 }
-function MainAdd()
-{
-  const Main = new MainComponent();
-  return <>{Main.reveal()}</>;
-}
-
-export default MainAdd;

@@ -4,9 +4,9 @@ header("Content-Type: application/json; charset=UTF-8");
 require(dirname(__DIR__). DIRECTORY_SEPARATOR  .'autoload.php');
 
 
-$book = new Book();
+$element = new Book();
 
-$stmt = $book->read();
+$stmt = $element->read();
 $num = mysqli_num_rows($stmt);
 
 if($num>0)
