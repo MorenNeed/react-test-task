@@ -1,8 +1,8 @@
 <?php
-class Validator extends DBCommands
+class Validator extends DbCommands
 {
     private $message = array();
-    public function validate_sku_delete($sku)
+    public function validateSkuDelete($sku)
     {
         if(strlen($sku) <= 0)
         {
@@ -12,36 +12,36 @@ class Validator extends DBCommands
         array_push($this->message, "");
         return $this->message;
     }
-    public function validate_sku($sku)
+    public function validateSKU($sku)
     {
-        if($this->compare($sku))
+        if(strlen($sku) <= 0)
+        {
+            array_push($this->message, "Please, submit SKU!");
+            return $this->message;
+        }
+        else if($this->compare($sku))
         {
             array_push($this->message, "That SKU already exists!");
             return $this->message;
         }
-        else if(strlen($sku) <= 0)
-        {
-            array_push($this->message, "SKU has no data!");
-            return $this->message;
-        }
         array_push($this->message, "");
         return $this->message;
     }
-    public function validate_name($name)
+    public function validateName($name)
     {
         if(!(strlen($name) > 0))
         {
-            array_push($this->message, "Name has no data!");
+            array_push($this->message, "Please, submit Name!");
             return $this->message;
         }
         array_push($this->message, "");
         return $this->message;
     }
-    public function validate_price($price)
+    public function validatePrice($price)
     {
         if(!(strlen($price) > 0))
         {
-            array_push($this->message, "Price has no data!");
+            array_push($this->message, "Please, submit Price!");
             return $this->message;
         }
         if(!(filter_var($price,FILTER_VALIDATE_FLOAT)))
@@ -57,17 +57,25 @@ class Validator extends DBCommands
         array_push($this->message, "");
         return $this->message;
     }
-    public function validate_description($description)
+    public function validateType($type)
     {
-        if($description === null)
+        if($type === null)
         {
             array_push($this->message, "Select type of product!");
-        }
-        else if((strlen($description) <= 0))
-        {
-            array_push($this->message, '');
-            array_push($this->message, "Description has no data!");
             return $this->message;
+        }
+        array_push($this->message, "");
+        return $this->message;
+    }
+    public function validateDescription($description)
+    {
+        foreach((array_values((array)$description)) as $value)
+        {
+            if($value === '')
+            {
+                array_push($this->message, "Please, submit Description!");
+                return $this->message;
+            }
         }
         array_push($this->message, "");
         return $this->message;

@@ -13,7 +13,7 @@ class Furniture extends Product
         $this->sku = $sku;
         $this->name = $name;
         $this->price = $price;
-        $this->dimensions = $description;
+        $this->dimensions = "Dimensions: " . $description->height . 'x' . $description->width . 'x' . $description->length . ' (CM)';
     }
 }
 ?>

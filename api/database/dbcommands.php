@@ -1,5 +1,5 @@
 <?php
-class DBCommands
+class DbCommands
 {
     private $stmt;
     private $conn;

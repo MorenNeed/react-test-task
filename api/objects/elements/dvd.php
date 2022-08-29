@@ -13,7 +13,7 @@ class DVD extends Product
         $this->sku = $sku;
         $this->name = $name;
         $this->price = $price;
-        $this->size = $description;
+        $this->size = "Size: " . $description->size . ' (MB)';
     }
 }
 ?>

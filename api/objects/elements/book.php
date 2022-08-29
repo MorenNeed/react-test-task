@@ -12,7 +12,7 @@ class Book extends Product
         $this->sku = $sku;
         $this->name = $name;
         $this->price = $price;
-        $this->weight = $description;
+        $this->weight = "Weight: " . $description->weight . ' (KG)';
     }
 }
 

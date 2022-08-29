@@ -11,10 +11,11 @@ $data = json_decode(file_get_contents("php://input"));
 $validator = new Validator();
 
 if(
-    $validator->validate_sku($data->sku) === array('') &
-    $validator->validate_name($data->name) === array('','') &
-    $validator->validate_price($data->price) === array('','','') &
-    $validator->validate_description($data->description) === array('','','','')
+    $validator->validateSKU($data->sku) === array('') &
+    $validator->validateName($data->name) === array('','') &
+    $validator->validatePrice($data->price) === array('','','') &
+    $validator->validateType($data->type) === array('','','','') &
+    $validator->validateDescription($data->description) === array('','','','','')
 )
 {
     (string)$type = $data->type;
@@ -36,6 +37,7 @@ if(
 }
 else
 {
+    http_response_code(400);
     echo json_encode($validator->getMessage(), JSON_UNESCAPED_UNICODE);
 }
 ?>

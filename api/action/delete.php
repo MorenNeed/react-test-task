@@ -13,7 +13,7 @@ $validator = new Validator();
 
 if
 (
-    $validator->validate_sku_delete($data->sku) === array('')
+    $validator->validateSkuDelete($data->sku) === array('')
 )
 {
     $element = new Book();
@@ -35,7 +35,7 @@ if
 }
 else
 {
-    http_response_code(404);
+    http_response_code(400);
 
     echo json_encode($validator->getMessage(), JSON_UNESCAPED_UNICODE);
 }

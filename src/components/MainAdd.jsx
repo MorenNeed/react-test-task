@@ -71,39 +71,14 @@ class ProductForm extends React.Component
   {
     event.preventDefault();
     const formData = new FormData(event.target);
-    if(formData.get('formSelect') === 'DVD')
+    const DescriptionArray =
     {
-      if(formData.get('size') !== '')
-      {
-        formData.append('description', formData.get('size') + ' (MB)');
-      }
-      else
-      {
-        formData.append('description', '');
-      }
-    }
-    else if(formData.get('formSelect') === 'Furniture')
-    {
-      if(formData.get('height') !== ''  && formData.get('width') !== '' && formData.get('length') !== '')
-      {
-      formData.append('description', formData.get('height') + 'x' + formData.get('width') + 'x' + formData.get('length') + ' (CM)');
-      }
-      else
-      {
-        formData.append('description', '');
-      }
-    }
-    else if(formData.get('formSelect') === 'Book')
-    {
-      if(formData.get('weight') !== '')
-      {
-        formData.append('description', formData.get('weight') + ' (KG)');
-      }
-      else
-      {
-        formData.append('description', '');
-      }
-    }
+      size: formData.get('size'),
+      height: formData.get('height'),
+      width: formData.get('width'),
+      length: formData.get('length'),
+      weight: formData.get('weight')
+    };
     fetch("http://localhost:8000/api/action/add.php",
     {
       method: "POST",
@@ -113,7 +88,7 @@ class ProductForm extends React.Component
           name: formData.get('name'),
           price: formData.get('price'),
           type: formData.get('formSelect'),
-          description: formData.get('description')
+          description: DescriptionArray
         })
     })
       .then((response) =>

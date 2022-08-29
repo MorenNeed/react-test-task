@@ -48,6 +48,7 @@ class MainListComponent extends React.Component
         })
         .then((data) =>
         {
+          console.log(data);
           this.validateData(data);
         });
       });
@@ -86,7 +87,6 @@ class MainListComponent extends React.Component
       <>
         <hr className="hr"/>
           <main>
-            <p>{this.state.data_delete}</p>
             <MainListElements/>
           </main>
         <hr className="hr"/>
