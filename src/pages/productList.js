@@ -16,8 +16,8 @@ const HeaderData =
         </div>
         <div className="buttons">
             <form className="form-buttons">
-                <button type="button"><Link to="/add-product" className="link">Add</Link></button>
-                <input type="submit" id="delete-product-bin" form="delete_form" value="Mass Delete"/>
+                <button type="button"><Link to="/add-product" className="link">ADD</Link></button>
+                <input type="submit" id="delete-product-bin" form="delete_form" value="MASS DELETE"/>
             </form>
         </div>
     </div>
