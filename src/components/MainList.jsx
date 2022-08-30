@@ -34,6 +34,14 @@ export default class MainListComponent extends React.Component
   handleSubmit(event)
   {
     event.preventDefault();
+    const checkboxes = document.querySelectorAll('.delete-checkbox');
+    checkboxes.forEach(element =>
+    {
+      if(element.checked)
+      {
+        this.state.selectedCheckboxes.push(element.id);
+      }
+    });
     fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/api/action/delete.php",
     {
       method: "POST",
@@ -50,20 +58,6 @@ export default class MainListComponent extends React.Component
         {
           this.validateData(data);
         });
-  }
-  handleChange(id)
-  {
-    const selectedCheckboxes = this.state.selectedCheckboxes;
-
-    const findIdx = selectedCheckboxes.indexOf(id);
-    if (findIdx > -1) {
-      selectedCheckboxes.splice(findIdx, 1);
-    } else {
-      selectedCheckboxes.push(id);
-    }
-     this.setState({
-      selectedCheckboxes: selectedCheckboxes
-    });
   }
   componentDidMount()
   {
@@ -113,8 +107,6 @@ class MainListElements extends MainListComponent
                   className="delete-checkbox"
                   form="delete_form"
                   id={el.sku}
-                  onChange={() => this.handleChange(el.sku)}
-                  selected={this.state.selectedCheckboxes.includes(el.sku)}
                 />
                 <ElementInfo sku={el.sku} name={el.name} price={el.price} description={el.description} selected={this.state.selectedCheckboxes}/>
               </div>
