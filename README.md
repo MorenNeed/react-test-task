@@ -29,6 +29,7 @@ These are the listed mandatory technical requirements:
 - Bootstrap: optional
 - SASS: advantage
 - MySQL: ^5.6 obligatory
+
 NOTE:
 - React and vue.js is a huge advantage if you decide to use them for the frontend part, but not a requirement
 
