@@ -1,4 +1,4 @@
-# Skandiweb Test Assigment
+# Scandiweb Test Assigment
 
 This project was created as test assigment for Junior Web Developer in Skandiweb.
 
