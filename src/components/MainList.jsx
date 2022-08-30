@@ -18,7 +18,6 @@ export default class MainListComponent extends React.Component
   }
   validateData(data)
   {
-    console.log(data);
     if(data['message'] === "Product deleted!")
     {
       window.location = '/';
@@ -35,7 +34,7 @@ export default class MainListComponent extends React.Component
   handleSubmit(event)
   {
     event.preventDefault();
-    fetch("http://localhost:8000/api/action/delete.php",
+    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/api/action/delete.php",
     {
       method: "POST",
       body: JSON.stringify(
@@ -68,7 +67,7 @@ export default class MainListComponent extends React.Component
   }
   componentDidMount()
   {
-    fetch("http://localhost:8000/api/action/read.php")
+    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/api/action/read.php")
       .then((response) =>
       {
         return response.json();

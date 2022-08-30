@@ -53,17 +53,13 @@
     -moz-border-radius: 2vh;
     -ms-border-radius: 2vh;
     -o-border-radius: 2vh;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -ms-transition: all 1s ease;
-    -o-transition: all 1s ease;
     -webkit-animation: activeAnimate .3s ease-in-out;
 }
 .validateDelete p
 {
     margin: 0;
     font-style: italic;
-    color: red;
+    font-weight: bold;
 }
 
 /* start keyframes */
