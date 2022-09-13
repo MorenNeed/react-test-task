@@ -1,6 +1,6 @@
-# Scandiweb Test Assigment
+# Test Assigment
 
-This project was created as test assigment for Junior Web Developer in Scandiweb.
+This project was created as test assigment for Junior Web Developer. 
 
 ## Junior Developer Test Task
 
