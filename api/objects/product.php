@@ -1,53 +1,53 @@
 <?php
-abstract class Product extends Validator
-{
-    protected $sku;
-    protected $name;
-    protected $price;
-    private $stmt;
-    private $numOfProducts;
-    private $products_arr;
-
-    abstract protected function add();
-    abstract protected function setData($sku, $name, $price, $description);
-    public function read()
+    abstract class Product extends DbCommands
     {
-        $this->stmt = $this->get();
-        $this->numOfProducts = mysqli_num_rows($this->stmt);
-        if($this->numOfProducts>0)
-        {
-            $this->products_arr = array();
-            $this->products_arr["records"] = array();
+        protected $sku;
+        protected $name;
+        protected $price;
+        private $stmt;
+        private $numOfProducts;
+        private $products_arr;
 
-            while($row = mysqli_fetch_assoc($this->stmt))
+        abstract protected function add();
+        abstract protected function setData($sku, $name, $price, $description);
+        public function read()
+        {
+            $this->stmt = $this->get();
+            $this->numOfProducts = mysqli_num_rows($this->stmt);
+            if($this->numOfProducts>0)
             {
-                extract($row);
+                $this->products_arr = array();
+                $this->products_arr["records"] = array();
 
-                $product_item = array(
-                    "sku" => $sku,
-                    "name" => $name,
-                    "price" => $price,
-                    "description" => $description
-                );
+                while($row = mysqli_fetch_assoc($this->stmt))
+                {
+                    extract($row);
 
-                array_push($this->products_arr["records"], $product_item);
+                    $product_item = array(
+                        "sku" => $sku,
+                        "name" => $name,
+                        "price" => $price,
+                        "description" => $description
+                    );
 
+                    array_push($this->products_arr["records"], $product_item);
+
+                }
+
+                return $this->products_arr["records"];
             }
-
-            return $this->products_arr;
+            else
+            {
+                return false;
+            }
         }
-        else
+        public function remove()
         {
-            return false;
+            return $this->delete($this->sku);
+        }
+        public function setDeleteData($sku)
+        {
+            $this->sku = $sku;
         }
     }
-    public function remove()
-    {
-        return $this->delete($this->sku);
-    }
-    public function setDeleteData($sku)
-    {
-        $this->sku = $sku;
-    }
-}
 ?>

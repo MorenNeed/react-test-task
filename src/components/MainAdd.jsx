@@ -76,11 +76,12 @@ class ProductForm extends React.Component
       length: formData.get('length'),
       weight: formData.get('weight')
     };
-    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/api/action/add.php",
+    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/api/index.php",
     {
       method: "POST",
       body: JSON.stringify(
         {
+          action: 'Add',
           sku: formData.get('sku'),
           name: formData.get('name'),
           price: formData.get('price'),

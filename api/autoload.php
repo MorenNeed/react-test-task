@@ -1,5 +1,4 @@
 <?php
-
 function autoload($className)
 {
     $paths = array('','action', 'config', 'validation', 'database', 'objects', 'objects'. DIRECTORY_SEPARATOR . 'elements');
