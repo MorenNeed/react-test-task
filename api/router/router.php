@@ -1,17 +1,17 @@
 <?php
-    class ActionsRouter
+    class Router
     {
         private $action;
         private $data;
-        private $actionObject;
+        private $Controller;
 
         function __construct()
         {
-            $this->actionObject = new Action();
+            $this->Controller = new Controller();
         }
         private function executeAction($action)
         {
-            $this->actionObject->$action($this->data);
+            $this->Controller->$action($this->data);
         }
         public function selectAction()
         {

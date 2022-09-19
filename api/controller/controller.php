@@ -1,5 +1,5 @@
 <?php
-    class Action
+    class Controller
     {
         private $validator;
         private $element;
@@ -9,7 +9,7 @@
         {
             $this->validator = new Validator();
         }
-        public function Add($data)
+        public function add($data)
         {
             if(
                 $this->validator->validateSKU($data->sku) === array('') &
@@ -42,7 +42,7 @@
                 echo json_encode($this->validator->getMessage(), JSON_UNESCAPED_UNICODE);
             }
         }
-        public function Delete($data)
+        public function delete($data)
         {
             if
             (
@@ -73,7 +73,7 @@
                 echo json_encode($this->validator->getMessage(), JSON_UNESCAPED_UNICODE);
             }
         }
-        public function Read($data)
+        public function read($data)
         {
             $this->element = new $data->type;
 

@@ -6,10 +6,4 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-l
     RewriteRule . /index.html [L]
-
-    RewriteRule ^public/ - [L]
-    RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
-    RewriteRule (.+) public/$1 [L]
-
-    RewriteRule (.*) public/index.php?route=$1 [L,QSA]
 </IfModule>

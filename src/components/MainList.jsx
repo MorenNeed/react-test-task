@@ -41,12 +41,12 @@ export default class MainListComponent extends React.Component
         this.state.selectedCheckboxes.push(element.id);
       }
     });
-    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/public_html/api/index.php", // https://oleksii-roshchupkin-test-task.000webhostapp.com
+    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/api/index.php", // https://oleksii-roshchupkin-test-task.000webhostapp.com
     {
       method: "POST",
       body: JSON.stringify(
         {
-          action: 'Delete',
+          action: 'delete',
           sku: Array.from(this.state.selectedCheckboxes),
           type: 'Book'
         })
@@ -62,12 +62,12 @@ export default class MainListComponent extends React.Component
   }
   componentDidMount()
   {
-    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/public_html/api/index.php", // https://oleksii-roshchupkin-test-task.000webhostapp.com
+    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/api/index.php", // https://oleksii-roshchupkin-test-task.000webhostapp.com
     {
       method: "POST",
       body: JSON.stringify(
         {
-          action: 'Read',
+          action: 'read',
           type: 'Book'
         })
       })

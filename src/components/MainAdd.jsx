@@ -81,7 +81,7 @@ class ProductForm extends React.Component
       method: "POST",
       body: JSON.stringify(
         {
-          action: 'Add',
+          action: 'add',
           sku: formData.get('sku'),
           name: formData.get('name'),
           price: formData.get('price'),
