@@ -13,7 +13,6 @@ export default class MainListComponent extends React.Component
       data_delete: [],
       validateDelete: 'inactive'
     };
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   validateData(data)
@@ -42,12 +41,14 @@ export default class MainListComponent extends React.Component
         this.state.selectedCheckboxes.push(element.id);
       }
     });
-    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/api/action/delete.php",
+    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/api/index.php", // https://oleksii-roshchupkin-test-task.000webhostapp.com
     {
       method: "POST",
       body: JSON.stringify(
         {
-          sku: Array.from(this.state.selectedCheckboxes)
+          action: 'delete',
+          sku: Array.from(this.state.selectedCheckboxes),
+          type: 'Book'
         })
       })
         .then((response) =>
@@ -61,7 +62,15 @@ export default class MainListComponent extends React.Component
   }
   componentDidMount()
   {
-    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/api/action/read.php")
+    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/api/index.php", // https://oleksii-roshchupkin-test-task.000webhostapp.com
+    {
+      method: "POST",
+      body: JSON.stringify(
+        {
+          action: 'read',
+          type: 'Book'
+        })
+      })
       .then((response) =>
       {
         return response.json();
@@ -69,7 +78,7 @@ export default class MainListComponent extends React.Component
       .then((data) =>
       {
         this.setState({
-          data: Array.from(data["records"])
+          data: Array.from(data)
         });
       });
   }

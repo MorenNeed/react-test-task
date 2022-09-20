@@ -1,6 +1,6 @@
 # Test Assigment
 
-This project was created as test assigment for Junior Web Developer. 
+This project was created as test assigment for Junior Web Developer.
 
 ## Junior Developer Test Task
 
@@ -42,7 +42,7 @@ This page open once button "ADD" is pressed, and accessible by: **<your_website>
     - DVD (can be value or text)
     - Book (can be value or text)
     - Furniture (can be value or text)
-    
+
 - Product type-specific attribute
     - Size input field (in MB) for DVD-disc have an ID: #size
     - Weight input field (in Kg) for Book have an ID: #weight
