@@ -3,15 +3,23 @@
 {
     border-color: rgba(0, 0, 0, 0.8);
 }
-.productList-main
+#delete_form
 {
     height: 78vh;
+    overflow: auto;
+}
+.productList-main
+{
     display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+
 }
 .product-element
 {
+    display: block;
     border: 2px solid rgba(0, 0, 0, 0.8);
-    width: 25%;
+    width: calc(30% - .5vh);
     height: 30%;
     margin: 2vh;
     background-color: rgba(0, 0, 0, 0.1);
@@ -53,10 +61,6 @@
     -moz-border-radius: 2vh;
     -ms-border-radius: 2vh;
     -o-border-radius: 2vh;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -ms-transition: all 1s ease;
-    -o-transition: all 1s ease;
     -webkit-animation: activeAnimate .3s ease-in-out;
 }
 .validateDelete p
@@ -76,5 +80,22 @@
     to
     {
         opacity: 1;
+    }
+}
+/* end keyframes */
+
+/* start ,media */
+@media screen and (max-width: 1200px)
+{
+    .product-element
+    {
+        width: 45%;
+    }
+}
+@media screen and (max-width: 910px)
+{
+    .product-element
+    {
+        width: 100%;
     }
 }

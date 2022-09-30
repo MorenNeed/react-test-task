@@ -13,12 +13,10 @@ export default class MainListComponent extends React.Component
       data_delete: [],
       validateDelete: 'inactive'
     };
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   validateData(data)
   {
-    console.log(data);
     if(data['message'] === "Product deleted!")
     {
       window.location = '/';
@@ -35,12 +33,20 @@ export default class MainListComponent extends React.Component
   handleSubmit(event)
   {
     event.preventDefault();
-    fetch("http://localhost:8000/api/action/delete.php",
+    const checkboxes = document.querySelectorAll('.delete-checkbox');
+    checkboxes.forEach(element =>
     {
-      method: "POST",
+      if(element.checked)
+      {
+        this.state.selectedCheckboxes.push(element.id);
+      }
+    });
+    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/api", // https://oleksii-roshchupkin-test-task.000webhostapp.com
+    {
+      method: "DELETE",
       body: JSON.stringify(
         {
-          sku: Array.from(this.state.selectedCheckboxes)
+          sku: Array.from(this.state.selectedCheckboxes),
         })
       })
         .then((response) =>
@@ -52,23 +58,12 @@ export default class MainListComponent extends React.Component
           this.validateData(data);
         });
   }
-  handleChange(id)
-  {
-    const selectedCheckboxes = this.state.selectedCheckboxes;
-
-    const findIdx = selectedCheckboxes.indexOf(id);
-    if (findIdx > -1) {
-      selectedCheckboxes.splice(findIdx, 1);
-    } else {
-      selectedCheckboxes.push(id);
-    }
-     this.setState({
-      selectedCheckboxes: selectedCheckboxes
-    });
-  }
   componentDidMount()
   {
-    fetch("http://localhost:8000/api/action/read.php")
+    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/api", // https://oleksii-roshchupkin-test-task.000webhostapp.com
+    {
+      method: "GET",
+      })
       .then((response) =>
       {
         return response.json();
@@ -76,7 +71,7 @@ export default class MainListComponent extends React.Component
       .then((data) =>
       {
         this.setState({
-          data: Array.from(data["records"])
+          data: Array.from(data)
         });
       });
   }
@@ -114,8 +109,6 @@ class MainListElements extends MainListComponent
                   className="delete-checkbox"
                   form="delete_form"
                   id={el.sku}
-                  onChange={() => this.handleChange(el.sku)}
-                  selected={this.state.selectedCheckboxes.includes(el.sku)}
                 />
                 <ElementInfo sku={el.sku} name={el.name} price={el.price} description={el.description} selected={this.state.selectedCheckboxes}/>
               </div>

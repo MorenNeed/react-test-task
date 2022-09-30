@@ -25,7 +25,7 @@ class ProductForm extends React.Component
     super(props);
     this.state =
     {
-      formSelect: 'Type Switcher',
+      productType: 'Type Switcher',
       sku: '',
       name: '',
       price: '',
@@ -76,7 +76,7 @@ class ProductForm extends React.Component
       length: formData.get('length'),
       weight: formData.get('weight')
     };
-    fetch("http://localhost:8000/api/action/add.php",
+    fetch("https://oleksii-roshchupkin-test-task.000webhostapp.com/api",
     {
       method: "POST",
       body: JSON.stringify(
@@ -84,7 +84,7 @@ class ProductForm extends React.Component
           sku: formData.get('sku'),
           name: formData.get('name'),
           price: formData.get('price'),
-          type: formData.get('formSelect'),
+          type: formData.get('productType'),
           description: DescriptionArray
         })
     })
@@ -124,7 +124,7 @@ class ProductForm extends React.Component
         </div>
         <div className="form-group">
           <label htmlFor="productType">Type Switcher</label>
-          <select className="form-select" name="formSelect" value={this.state.formSelect} onChange={this.handleChange}>
+          <select className="form-select" name="productType" id="productType" value={this.state.productType} onChange={this.handleChange}>
             <option disabled>Type Switcher</option>
             <option>DVD</option>
             <option>Furniture</option>
@@ -134,7 +134,7 @@ class ProductForm extends React.Component
         <div className="validMessage">
           <p>{this.state.data[3]}</p>
         </div>
-        <DynamicalElement id={this.state.formSelect} data={this.state.data[4]}/>
+        <DynamicalElement id={this.state.productType} data={this.state.data[4]}/>
       </form>
     );
   }

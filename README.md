@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Test Assigment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created as test assigment for Junior Web Developer.
 
-## Available Scripts
+## Junior Developer Test Task
 
-In the project directory, you can run:
+### Outcome of the test
 
-### `npm start`
+A web-app (accessible by an URL) containing two pages for:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Product list page
+2. Adding a product page
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 1. Product List
 
-### `npm test`
+This is the first page of the website, accessible by **<your_website>/**
+![screencapture-oleksii-roshchupkin-test-task-000webhostapp-2022-08-30-16_35_09](https://user-images.githubusercontent.com/106179118/187451409-9b0f9b9c-a4b4-4266-a667-6d7595d5cc6b.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### HAVE for the list items:
 
-### `npm run build`
+- SKU (unique for each product)
+- Name
+- Price in $
+- One of the product-specific attributes and its value
+    - Size (in MB) for DVD-disc
+    - Weight (in Kg) for Book
+    - Dimensions (HxWxL) for Furniture
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 2. Adding a product page
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This page open once button "ADD" is pressed, and accessible by: **<your_website>/add-product**
+![screencapture-oleksii-roshchupkin-test-task-000webhostapp-add-product-2022-08-30-16_37_31](https://user-images.githubusercontent.com/106179118/187451766-6b5ebf8a-9ff3-4b74-a666-8e0d97820f3b.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### The page display a form with id: #product_form, with the following fields:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- SKU (id: #sku)
+- Name (id: #name)
+- Price (id: #price)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Product type switcher (id: #productType) with following options:
+    - DVD (can be value or text)
+    - Book (can be value or text)
+    - Furniture (can be value or text)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Product type-specific attribute
+    - Size input field (in MB) for DVD-disc have an ID: #size
+    - Weight input field (in Kg) for Book have an ID: #weight
+    - Each from Dimensions input fields (HxWxL) for Furniture have an appropriate ID:
+        - Height - #height
+        - Width - #width
+        - Length - #length
