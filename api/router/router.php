@@ -13,10 +13,10 @@
         {
             $this->Controller->$action($this->data);
         }
-        public function selectAction()
+        public function selectAction($request_method)
         {
             $this->data = json_decode(file_get_contents("php://input"));
-            $this->action = $this->data->action;
+            $this->action = strtolower($request_method);
 
             $this->executeAction($this->action);
         }

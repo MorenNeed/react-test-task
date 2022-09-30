@@ -9,7 +9,7 @@
         {
             $this->validator = new Validator();
         }
-        public function add($data)
+        public function post($data)
         {
             if(
                 $this->validator->validateSKU($data->sku) === array('') &
@@ -49,7 +49,7 @@
                 $this->validator->validateSkuDelete($data->sku) === array('')
             )
             {
-                $this->element = new $data->type;
+                $this->element = new Book();
 
                 $this->element->setDeleteData($data->sku);
 
@@ -73,9 +73,9 @@
                 echo json_encode($this->validator->getMessage(), JSON_UNESCAPED_UNICODE);
             }
         }
-        public function read($data)
+        public function get()
         {
-            $this->element = new $data->type;
+            $this->element = new Book();
 
             $this->stmt = $this->element->read();
 
